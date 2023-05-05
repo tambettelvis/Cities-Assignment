@@ -1,0 +1,26 @@
+CREATE TABLE cities (
+    id INT PRIMARY KEY NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    url VARCHAR(2048) DEFAULT NULL,
+    UNIQUE (id)
+) CHARACTER SET utf8mb4;
+
+CREATE TABLE users (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    UNIQUE (id)
+);
+
+CREATE TABLE roles (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    UNIQUE (id)
+);
+
+CREATE TABLE users_roles (
+   user_id INT NOT NULL,
+   role_id INT NOT NULL,
+   CONSTRAINT role_fk FOREIGN KEY (role_id) REFERENCES roles (id),
+   CONSTRAINT user_fk FOREIGN KEY (user_id) REFERENCES users (id)
+);
